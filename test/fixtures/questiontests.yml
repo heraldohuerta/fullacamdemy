@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  encunciado1: MyString
+  enunciado2: MyString
+  test: one
+  questiontypes: one
+
+two:
+  encunciado1: MyString
+  enunciado2: MyString
+  test: two
+  questiontypes: two

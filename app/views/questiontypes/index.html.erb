@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Questiontypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questiontypes.each do |questiontype| %>
+      <tr>
+        <td><%= questiontype.tipo %></td>
+        <td><%= questiontype.descripcion %></td>
+        <td><%= link_to 'Show', questiontype %></td>
+        <td><%= link_to 'Edit', edit_questiontype_path(questiontype) %></td>
+        <td><%= link_to 'Destroy', questiontype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Questiontype', new_questiontype_path %>

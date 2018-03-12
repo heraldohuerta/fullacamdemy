@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312221449) do
+ActiveRecord::Schema.define(version: 20180312233521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,79 @@ ActiveRecord::Schema.define(version: 20180312221449) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "alternatives", force: :cascade do |t|
+    t.string "detallepregunta"
+    t.boolean "respuesta"
+    t.bigint "questiontest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questiontest_id"], name: "index_alternatives_on_questiontest_id"
+  end
+
+  create_table "asignaturs", force: :cascade do |t|
+    t.string "nombre"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_asignaturs_on_course_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "nombre"
+    t.string "detalle"
+    t.string "archivo"
+    t.string "url_file"
+    t.bigint "asignatur_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asignatur_id"], name: "index_contents_on_asignatur_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "nombre"
+    t.string "detealle"
+    t.string "tiempo"
+    t.string "foto"
+    t.string "costo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questiontests", force: :cascade do |t|
+    t.string "encunciado1"
+    t.string "enunciado2"
+    t.bigint "test_id"
+    t.bigint "questiontypes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questiontypes_id"], name: "index_questiontests_on_questiontypes_id"
+    t.index ["test_id"], name: "index_questiontests_on_test_id"
+  end
+
+  create_table "questiontypes", force: :cascade do |t|
+    t.string "tipo"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "nombre"
+    t.string "puntajemax"
+    t.string "puntajeapro"
+    t.string "detalle"
+    t.string "archivo"
+    t.string "url_file"
+    t.bigint "content_id"
+    t.bigint "asignatur_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asignatur_id"], name: "index_tests_on_asignatur_id"
+    t.index ["content_id"], name: "index_tests_on_content_id"
+    t.index ["course_id"], name: "index_tests_on_course_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,4 +152,12 @@ ActiveRecord::Schema.define(version: 20180312221449) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "alternatives", "questiontests"
+  add_foreign_key "asignaturs", "courses"
+  add_foreign_key "contents", "asignaturs"
+  add_foreign_key "questiontests", "questiontypes", column: "questiontypes_id"
+  add_foreign_key "questiontests", "tests"
+  add_foreign_key "tests", "asignaturs"
+  add_foreign_key "tests", "contents"
+  add_foreign_key "tests", "courses"
 end

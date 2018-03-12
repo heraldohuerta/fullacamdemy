@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  puntajemax: MyString
+  puntajeapro: MyString
+  detalle: MyString
+  archivo: MyString
+  url_file: MyString
+  content: one
+  asignatur: one
+  course: one
+
+two:
+  nombre: MyString
+  puntajemax: MyString
+  puntajeapro: MyString
+  detalle: MyString
+  archivo: MyString
+  url_file: MyString
+  content: two
+  asignatur: two
+  course: two
