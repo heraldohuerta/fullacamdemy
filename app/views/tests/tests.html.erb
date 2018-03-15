@@ -1,0 +1,120 @@
+<div>
+   <select name="curso" id="curso">
+     <% @courses.each do |course| %>
+       <option value="<%= course.id %>"> <%= course.nombre %></option>
+      <% end %>
+   </select>
+</div>
+
+
+<div>
+   <select name="asignatura" id="asignatura">
+       <option value="0">Seleccionar</option>
+   </select>
+   
+</div>
+
+<div>
+   <select name="contendido" id="contendido">
+       <option value="0">Seleccionar</option>
+   </select>
+</div>
+
+<hr>
+<div class='row'>
+  <div class='col-sm-2'>
+         <h3>Seleccione Prueba</h3>
+          <ul>
+          <% @listest.each do |list| %>
+           <li>
+            <%= link_to list.nombre, method: :post, id_prueba: list.id %>
+          </li>
+          <% end %>
+        </ul>
+
+  </div>
+  <div class="col-sm-10">
+
+      <%= form_with(model: @test, url:grabar_test_path, local: true) do |f| %>
+
+      <div class="field">
+          <%= f.label :prueba %>
+          <%= f.text_field :nombre, id: :nombre_test %>
+      </div>
+
+      <div class="field">
+          <%= f.label :porcentaje_máximo %>
+          <%= f.text_field :puntajemax, id: :puntajemax %>
+      </div>
+      <div class="field">
+          <%= f.label :porcentaje_aprobación %>
+          <%= f.text_field :puntajemax, id: :puntajemax %>
+      </div>
+      <div class="field">
+          <%= f.label :comentario %>
+          <%= f.text_field :detalle, id: :detalle %>
+      </div>
+      <div class="field">
+          <%= f.label :url_documentación%>
+          <%= f.text_field :url_file, id: :url_file %>
+      </div>
+      <%= f.submit "Ingresar Prueba"%>
+  <% end %>
+
+
+  <%= form_with(scope: :prueba, url:grabar_question_path, local: true) do |f| %>
+
+          <h1 id='id_prueba'>Codigo Interno:<%= @id_prueba %></h1>
+          <h1 id='nombre_prueba'>Nombre Prueba:<%= @prueba_ingresada %></h1>
+
+          <div class="field">
+            <%= f.label :tipo_Pregunta %>
+            <%= f.select :id, @questiontype.pluck(:tipo,:id) %>
+          </div>
+
+          <div class="field">
+            <%= f.label :pregunta %>
+            <%= f.text_field :encunciado1, id: :enunciado1_test %>
+          </div>
+
+
+
+
+            <table  class="table table-striped">
+              <tr>
+                  <th>Alternativa</th>
+                  <th>Opcion(es) Correcta(s)</th>
+              </tr>
+              <% 5.times do |ind| %>
+                <% id_opcion = "opcion#{ind}" %>
+                <% id_respuesta = "respuesta#{ind}"  %>
+                <tr>
+                  <td>
+                      <div class="field">
+                        <%= f.text_field id_opcion , id: id_opcion %>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="field">
+                      <%= f.check_box id_respuesta , id: id_respuesta %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+        <%= f.submit "Ingresar Pregunta"%>
+      <% end %>
+      </div>
+    </div>
+
+
+
+
+<script type="text/javascript">
+function add()
+  {
+    var mensaje =  document.getElementById('prueba');
+     mensaje.innerHTML = <%= @prueba_ingresada %>;
+    document.body.appendChild(mensaje);
+};
+</script>

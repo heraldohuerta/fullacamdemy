@@ -13,3 +13,11 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener('turbolinks:load',function(e)){
+  $('#curso').change(function())
+  {
+    var course_id = $(this).find(":selected").val();
+    $.post("completarasignatura",{course_id: course_id});
+  })
+})

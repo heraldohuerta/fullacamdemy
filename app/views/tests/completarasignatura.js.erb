@@ -1,0 +1,4 @@
+$('#asignatura').children().not('first').remove()
+<% @asignatura.each do |as| %>
+  $('#asignatura').append('<option id=' <%= as.id %> '>' <%= as.nombre %> '</option>')
+<% end %>
