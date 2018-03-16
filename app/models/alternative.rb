@@ -1,4 +1,4 @@
 class Alternative < ApplicationRecord
-  belongs_to :questiontest, inverse_of: :alternatives
+  belongs_to :questiontest
 
 end

@@ -1,0 +1,35 @@
+<%= form_with(scope: :test2, url:grabar_question_path) do |f| %>
+<div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        Pregunta
+      </span>
+    </div>
+    <input class="form-control" type="text" name="pregunta"  id="pregunta" placeholder="Ingrese Pregunta...">
+  </div>
+</div>
+
+<table  class="table table-striped">
+  <tr>
+    <th>Alternativa</th>
+    <th>Opcion(es) Correcta(s)</th>
+  </tr>
+  <% 5.times do |ind| %>
+  <% id_opcion = "opcion#{ind}" %>
+  <% id_respuesta = "respuesta#{ind}"  %>
+  <tr>
+    <td>
+      <div class="field">
+        <%= f.text_field id_opcion , id: id_opcion %>
+      </div>
+    </td>
+    <td>
+      <div class="field">
+        <%= f.check_box id_respuesta , id: id_respuesta %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

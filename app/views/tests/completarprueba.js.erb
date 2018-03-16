@@ -1,0 +1,8 @@
+$('#listest').children().not('first').remove()
+var valor = "<option value='0'> Seleccione Opción </option>"
+$('#listest').append(valor)
+
+<% @prueba.each do |as| %>
+var valor = "<option value='<%= as.id %>'> <%= as.nombre %> </option>"
+  $('#listest').append(valor)
+<% end %>

@@ -1,4 +1,13 @@
 $('#asignatura').children().not('first').remove()
+$('#contenido').children().not('first').remove()
+$('#listest').children().not('first').remove()
+$('#listest').children().not('first').remove()
+
+
+var valor = "<option value='0'> Seleccione Opción </option>"
+$('#asignatura').append(valor)
+
 <% @asignatura.each do |as| %>
-  $('#asignatura').append('<option id=' <%= as.id %> '>' <%= as.nombre %> '</option>')
+var valor = "<option value='<%= as.id %>'> <%= as.nombre %> </option>"
+  $('#asignatura').append(valor)
 <% end %>

@@ -1,0 +1,8 @@
+$('#contenido').children().not('first').remove()
+var valor = "<option value='0'> Seleccione Opción </option>"
+$('#contenido').append(valor)
+
+<% @contenido.each do |as| %>
+var valor = "<option value='<%= as.id %>'> <%= as.nombre %> </option>"
+  $('#contenido').append(valor)
+<% end %>

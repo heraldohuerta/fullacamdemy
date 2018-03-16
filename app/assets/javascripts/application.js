@@ -13,11 +13,38 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+// <% self.class.include Rails.application.routes.url_helpers %>
 
-document.addEventListener('turbolinks:load',function(e)){
-  $('#curso').change(function())
+
+$( document ).on('turbolinks:load', function() {
+
+  $('#curso').on('click', function()
   {
     var course_id = $(this).find(":selected").val();
     $.post("completarasignatura",{course_id: course_id});
+  });
+
+  $('#asignatura').on('click', function()
+  {
+    var asignatur_id = $(this).find(":selected").val();
+    $.post("completarcontenido",{asignatur_id: asignatur_id});
   })
-})
+
+  $('#contenido').on('click', function()
+  {
+    var content_id = $(this).find(":selected").val();
+
+    $.post("completarprueba",{content_id: content_id});
+  })
+
+
+  $('#test').on('click', function()
+    {
+      var test_id = $(this).find(":selected").val();
+      $.post("buscarprueba",{test_id: test_id});
+    })
+
+
+
+
+});

@@ -1,0 +1,94 @@
+<div class='row'>
+  <div class="col-sm-10">
+    <%= form_with(scope: :test, url:grabar_question_path) do |f| %>
+    <div class="mt-3">
+
+      <div >
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Curso
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <select name="curso" id="curso" class="form-control" placeholder="Busca un Curso...">
+            <% @courses.each do |course| %>
+            <option value="<%= course.id %>"> <%= course.nombre %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+
+      <br>
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Asignatura
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <select name="asignatura" id="asignatura" class="form-control" placeholder="Buscar Asignatura...">
+            <option value="0">Seleccionar</option>
+          </select>
+
+        </div>
+      </div>
+      <br>
+
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Contenido
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <select name="contenido" id="contenido" class="form-control" placeholder="Buscar Contenido...">
+            <option value="0">Seleccionar</option>
+          </select>
+
+        </div>
+      </div>
+      <br>
+
+
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Pruebas <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <select name="listest" id="listest" class="form-control" placeholder="Buscar una Prueba...">
+            <option value="0">Seleccionar</option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Tipo Pregunta
+            </span>
+          </div>
+          <select name="questiontype" id="questiontype" class="form-control" placeholder="Buscar una Prueba...">
+            <% @questiontype.each do |q| %>
+            <option value="<%= q.id %>"> <%= q.tipo %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div id='preguntas_form'>
+         <%=  render('test') %>
+      </div>
+      <%= f.submit "Ingresar Pregunta"%>
+    </div>
+    <% end %>
+  </div>
+</div>

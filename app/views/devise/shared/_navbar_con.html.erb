@@ -5,6 +5,8 @@
   <div  id="list-example" class="list-group ml-2">
     <a class="list-group-item list-group-item-action" href="<%= root_path %>">Incio</a>
     <a class="list-group-item list-group-item-action" href="<%= edit_user_registration_path %>">Editar mi Usuario</a>
+    <a class="list-group-item list-group-item-action" href="<%= test_path %>">Crear Pruebas</a>
+    <a class="list-group-item list-group-item-action" href="<%= questiontest_path %>">Crear Preguntas</a>
     <% if isadmin? %>
       <a class="list-group-item list-group-item-action" href="<%= users_path %>">Administración Usuario</a>
     <% end %>
