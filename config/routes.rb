@@ -10,28 +10,28 @@ Rails.application.routes.draw do
   }
 
 
-  get 'tests/tests',   to: 'tests#tests',  as: 'test'
-  get 'tests/questiontest',   to: 'tests#questiontest',  as: 'questiontest'
-   # post 'tests/insert', to: 'tests#insert', as: 'insert'
+
+resources :questiontests , only: [:index,:create,:destroy]
+post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
 
 
- # ACCIONES FORMULARIO
-  post 'tests/grabar_test', to: 'tests#grabar_test', as: 'grabar_test'
-  post 'tests/grabar_question', to: 'tests#grabar_question', as: 'grabar_question'
+
+
+
+resources :tests, only: [:index,:create,:update] do
+    get'armartest'
+    collection do
+      post 'completarasignatura'
+      post 'completarcontenido'
+      post 'completarprueba'
+      post 'buscarprueba'
+    end
+    # resources:questiontests
+  end
   
-# RUTAS JS
-
-  post 'tests/completarasignatura', to: 'tests#completarasignatura', as: 'completarasignatura'
-  post 'tests/completarcontenido', to: 'tests#completarcontenido', as: 'completarcontenido'
-  post 'tests/completarprueba', to: 'tests#completarprueba', as: 'completarprueba'
-  post 'tests/buscarprueba', to: 'tests#buscarprueba', as: 'buscarprueba'
-
-#RUTAS PAGINAS
-
+  get 'vertest',   to: 'tests#vertest',  as: 'vertest'
+  post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
   get 'inicios/Index'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   root to: "inicios#Index"
 
 end

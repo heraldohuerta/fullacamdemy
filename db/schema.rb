@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315192916) do
+ActiveRecord::Schema.define(version: 20180325191517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(version: 20180315192916) do
     t.string "archivo"
     t.string "url_file"
     t.bigint "asignatur_id"
-    t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "course_id"
     t.index ["asignatur_id"], name: "index_contents_on_asignatur_id"
     t.index ["course_id"], name: "index_contents_on_course_id"
   end
@@ -84,16 +84,22 @@ ActiveRecord::Schema.define(version: 20180315192916) do
     t.string "costo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "firmware_image"
+    t.string "firmware_image_filename"
+    t.string "firmware_image_file_name"
+    t.string "firmware_image_content_type"
+    t.integer "firmware_image_file_size"
+    t.datetime "firmware_image_updated_at"
   end
 
   create_table "questiontests", force: :cascade do |t|
     t.string "encunciado1"
     t.string "enunciado2"
     t.bigint "test_id"
-    t.bigint "questiontypes_id"
+    t.bigint "questiontype_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questiontypes_id"], name: "index_questiontests_on_questiontypes_id"
+    t.index ["questiontype_id"], name: "index_questiontests_on_questiontype_id"
     t.index ["test_id"], name: "index_questiontests_on_test_id"
   end
 
@@ -158,7 +164,7 @@ ActiveRecord::Schema.define(version: 20180315192916) do
   add_foreign_key "asignaturs", "courses"
   add_foreign_key "contents", "asignaturs"
   add_foreign_key "contents", "courses"
-  add_foreign_key "questiontests", "questiontypes", column: "questiontypes_id"
+  add_foreign_key "questiontests", "questiontypes"
   add_foreign_key "questiontests", "tests"
   add_foreign_key "tests", "asignaturs"
   add_foreign_key "tests", "contents"

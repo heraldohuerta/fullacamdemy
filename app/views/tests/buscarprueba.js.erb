@@ -1,2 +1,29 @@
-$('#test_nombre').val('<%= @test.nombre %>');
-$('#test_id').val('<%= @test.id %>');
+// $('#test_nombre').val('<%= @test.nombre %>');
+// $('#test_id').val('<%= @test.id %>');
+
+
+
+<% 5.times do |ind| %>
+    <% id_opcion = "opcion#{ind}" %>
+    <% id_respuesta = "respuesta#{ind}"  %>
+      $('#<%= id_opcion  %>').val('')
+      $('#<%= id_respuesta  %>').prop("checked", false);
+<% end %>
+$('#notice').text('')
+$('#pregunta').val('')
+$('#test_id3').html('<p>Seleccione Prueba</p>')
+
+
+var boton = "<br><a href='<%= test_armartest_path(@test.id) %>' data-remote=true class='btn btn-primary text-white'> Ver Prueba</a>"
+console.log(boton)
+$('#test_id2').html(boton)
+
+
+// Esto ocurre cuando al buscar una prueba en test.html.erb
+// se gatillala accion de editar la prueba
+
+$('#nombre_test').val('<%= @test.nombre %>')
+$('#puntajemax').val('<%= @test.puntajemax %>')
+$('#puntajeapro').val('<%= @test.puntajeapro %>')
+$('#url_file').val('<%= @test.url_file %>')
+$('#detalle').val('<%= @test.detalle %>')

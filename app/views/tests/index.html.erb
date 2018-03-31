@@ -1,0 +1,49 @@
+<div class='row'>
+  <div class="col-sm-10" id="render_test">
+
+
+    <%= form_with(model:   @test , url:tests_path, local: true) do |f| %>
+    <div class="mt-3">
+      <%=  render './shared/listas', f:f %>
+      <br>
+
+      <div class="jumbotron mt-0">
+        <h1 class="mt-0">Ingreso de Nueva Prueba</h1>
+          <p>Si no existe una prueba determinada, favor seleccionar</p>
+            <div >
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                 <%= f.label :nombre_Prueba %>
+                  </span>
+                </div>
+                <%= f.text_field :nombre, id: :nombre_test,class:"form-control" %>
+
+              </div>
+            </div>
+
+          <div class="row m-0">
+            <div class="field">
+                <%= f.label :porcentaje_máximo %>
+                <%= f.text_field :puntajemax, id: :puntajemax %>
+            </div>
+            <div class="field">
+                <%= f.label :porcentaje_aprobación %>
+                <%= f.text_field :puntajeapro, id: :puntajeapro %>
+            </div>
+          </div>
+          <div class="field">
+              <%= f.label :comentario %>
+              <%= f.text_field :detalle, id: :detalle %>
+          </div>
+          <div class="field">
+              <%= f.label :url_documentación%>
+              <%= f.text_field :url_file, id: :url_file %>
+          </div>
+          <%= f.submit "Ingresar Prueba"%>
+    </div>
+        </div>
+    <% end %>
+
+  </div>
+</div>

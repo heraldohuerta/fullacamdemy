@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CarrgoCompra</title>
+    <title>Sistema e-learning FullCourse</title>
     <%= csrf_meta_tags %>
-    <script
-			  src="https://code.jquery.com/jquery-3.3.1.js"
-			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-			  crossorigin="anonymous"></script>
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">        
+    <script src="https://code.jquery.com/jquery-3.3.1.js"  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +14,7 @@
     <%= render "devise/shared/navbar" %>
     <% if notice.present? %>
     <div class="alert alert-success">
-      <strong><%= notice %></strong>
+      <strong id='notice'><%= notice %></strong>
     </div>
     <% end %>
     <% if alert.present? %>

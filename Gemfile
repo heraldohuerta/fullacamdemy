@@ -7,6 +7,7 @@ end
 
 gem "devise", git: 'https://github.com/plataformatec/devise.git'
 gem 'activeadmin'
+gem "paperclip", "~> 6.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'

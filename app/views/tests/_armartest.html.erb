@@ -1,0 +1,134 @@
+<hr>
+<div class="alert alert-success">
+  <strong id='notice'></strong>
+</div>
+
+<h3><%= @test.nombre %></h3>
+<% @questiontest.each do |pregunta| %>
+<!-- VERDADERO FALSO -->
+  <% if pregunta.questiontype_id == 1 %>
+        <%= form_with(scope: :question, url:update_path(pregunta.id) ,  class:"mt-5", id:"pregunta#{pregunta.id}" ) do |f| %>
+                <h3>Verdadero y Falso </h3>
+                <% ind = 0 %>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <p>?</p>
+                          </div>
+                          </div>
+                        <%= f.text_field :pregunta, id:"pregunta", name:"pregunta",value: pregunta.encunciado1 %>
+                      </div>
+                      <% pregunta.alternatives.each do |alternativa| %>
+                            <% id_opcion = "opcion#{ind}" %>
+                            <% id_respuesta = "respuesta#{ind}"  %>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <% if alternativa.respuesta == true %>
+                                      <%= f.check_box id_respuesta , id: id_respuesta,  checked: true %>
+                                     <!-- <input  checked  type="checkbox" id='<%= id_respuesta %>' name='<%= id_respuesta %>'  > -->
+                                 <% else %>
+                                     <%= f.check_box id_respuesta , id: id_respuesta %>
+                                   <!-- <input     type="checkbox" id='<%= id_respuesta %>' name='<%= id_respuesta %>'  > -->
+                                 <% end %>
+                                </div>
+                              </div>
+                                <%= f.text_field id_opcion , id: id_opcion, value: alternativa.detallepregunta %>
+                                <!-- <input  value='<%= alternativa.detallepregunta %>' type="text" id='<%= id_opcion %>' name='<%= id_opcion %>'> -->
+                            </div>
+                            <% ind = ind + 1 %>
+                            <% break  if ind >= 1 %>
+                      <% end %>
+              <button type="submit" class='btn btn-primary btn-sm'>Modificar</button>
+              <%= link_to 'Eliminar', questiontest_path(pregunta), method: :delete, data: { confirm: 'Estás seguro que deseas eliminar la pregunta?', remote: true }, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+  <% end %>
+
+
+
+  <!-- SELECION MULTIPLE -->
+  <% if pregunta.questiontype_id == 2 %>
+        <%= form_with(scope: :question, url:update_path(pregunta.id),  class:"mt-5",id:"pregunta#{pregunta.id}"  ) do |f| %>
+                <h3>Selección Multiple </h3>
+                <% ind = 0 %>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <p>?</p>
+                          </div>
+                          </div>
+                        <%= f.text_field :pregunta, id:"pregunta", name:"pregunta", value: pregunta.encunciado1 %>
+                      </div>
+                      <% pregunta.alternatives.each do |alternativa| %>
+                            <% id_opcion = "opcion#{ind}" %>
+                            <% id_respuesta = "respuesta#{ind}"  %>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <% if alternativa.respuesta == true %>
+                                      <%= f.check_box id_respuesta , id: id_respuesta,  checked: true %>
+                                     <!-- <input  checked  type="checkbox" id='<%= id_respuesta %>' name='<%= id_respuesta %>'  > -->
+                                 <% else %>
+                                     <%= f.check_box id_respuesta , id: id_respuesta %>
+                                   <!-- <input     type="checkbox" id='<%= id_respuesta %>' name='<%= id_respuesta %>'  > -->
+                                 <% end %>
+                                </div>
+                              </div>
+                                <%= f.text_field id_opcion , id: id_opcion, value: alternativa.detallepregunta %>
+                                <!-- <input  value='<%= alternativa.detallepregunta %>' type="text" id='<%= id_opcion %>' name='<%= id_opcion %>'> -->
+                            </div>
+                            <% ind = ind + 1 %>
+                      <% end %>
+              <button type="submit" class='btn btn-primary btn-sm'>Modificar</button>
+                <%= link_to 'Eliminar', questiontest_path(pregunta), method: :delete, data: { confirm: 'Estás seguro que deseas eliminar  la pregunta?' , remote: true}, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+  <% end %>
+
+
+
+<!-- OPCION UNICA -->
+<% if pregunta.questiontype_id == 3 %>
+      <%= form_with(scope: :question, url:update_path(pregunta.id),  class:"mt-5",id:"pregunta#{pregunta.id}"  ) do |f| %>
+              <h3>Opcion Unica</h3>
+              <% ind = 0 %>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <p>?</p>
+                        </div>
+                        </div>
+                      <%= f.text_field :pregunta, id:"pregunta", name:"pregunta", value: pregunta.encunciado1 %>
+                    </div>
+                    <% pregunta.alternatives.each do |alternativa| %>
+                          <% id_opcion = "opcion#{ind}" %>
+                          <% id_respuesta = "respuesta#{ind}"  %>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <% if alternativa.respuesta == true %>
+                                 <%= f.check_box  id_respuesta , id: id_respuesta ,checked:true%>
+                                    <!-- <input  checked  type="checkbox" id='<%= id_respuesta %>' > -->
+                               <% else %>
+                                   <%= f.check_box  id_respuesta , id: id_respuesta %>
+                                 <!-- <input     type="checkbox" id='<%= id_respuesta %>' name='<%= id_respuesta %>'  > -->
+                               <% end %>
+                              </div>
+                            </div>
+                              <%= f.text_field id_opcion , id: id_opcion, value: alternativa.detallepregunta %>
+                              <!-- <input  value='<%= alternativa.detallepregunta %>' type="text" id='<%= id_opcion %>' name='<%= id_opcion %>'> -->
+                          </div>
+                          <% ind = ind + 1 %>
+                    <% end %>
+                  <button type="submit" class='btn btn-primary btn-sm'>Modificar</button>
+                    <%= link_to 'Eliminar', questiontest_path(pregunta), method: :delete, data: { confirm: 'Estás seguro que deseas eliminar  la pregunta?', remote: true }, class: 'btn btn-sm btn-danger' %>
+
+    <% end %>
+<% end %>
+
+
+  <!-- DESARROLLO -->
+    <% if pregunta.questiontype_id == 4 %>
+
+    <% end %>
+
+<% end %>

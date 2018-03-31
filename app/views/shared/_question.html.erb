@@ -1,4 +1,4 @@
-<%= form_with(scope: :test2, url:grabar_question_path) do |f| %>
+
 <div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -6,7 +6,7 @@
         Pregunta
       </span>
     </div>
-    <input class="form-control" type="text" name="pregunta"  id="pregunta" placeholder="Ingrese Pregunta...">
+      <%= f.text_field :encunciado1, id: :pregunta,class:"form-control" %>
   </div>
 </div>
 
@@ -32,4 +32,3 @@
   </tr>
   <% end %>
 </table>
-<% end %>

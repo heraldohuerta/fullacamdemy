@@ -1,0 +1,30 @@
+
+
+<div class='row'>
+
+  <div class="col-sm-10">
+    <div class="alert alert-success">
+      <strong id='notice'></strong>
+    </div>
+    <%= form_with(scope: :test, url:questiontests_path) do |f| %>
+    <div class="mt-3">
+          <%=  render './shared/listas', f: f %>
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              Tipo Pregunta
+            </span>
+          </div>
+          <%= f.select(:questiontype_id, @questiontype.pluck(:tipo,:id),{},{ id: :questiontype,class:"form-control"})  %>
+        </div>
+      </div>
+
+      <div id='preguntas_form'>
+         <%=  render './shared/question', f: f %>
+      </div>
+      <%= f.submit "Ingresar Pregunta"%>
+    </div>
+    <% end %>
+  </div>
+</div>

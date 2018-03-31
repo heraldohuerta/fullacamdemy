@@ -1,11 +1,22 @@
 $('#asignatura').children().not('first').remove()
 $('#contenido').children().not('first').remove()
 $('#listest').children().not('first').remove()
-$('#listest').children().not('first').remove()
+<% 5.times do |ind| %>
+    <% id_opcion = "opcion#{ind}" %>
+    <% id_respuesta = "respuesta#{ind}"  %>
+      $('#<%= id_opcion  %>').val('')
+      $('#<%= id_respuesta  %>').prop("checked", false);
+<% end %>
+$('#notice').text('')
+$('#pregunta').val('')
 
 
 var valor = "<option value='0'> Seleccione Opción </option>"
 $('#asignatura').append(valor)
+$('#contenido').append(valor)
+$('#listest').append(valor)
+
+
 
 <% @asignatura.each do |as| %>
 var valor = "<option value='<%= as.id %>'> <%= as.nombre %> </option>"

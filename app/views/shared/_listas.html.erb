@@ -1,0 +1,49 @@
+<div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        Curso
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <%= f.select(:course_id, @courses.pluck(:nombre,:id),{},{ id: :curso,class:"form-control"})  %>
+  </div>
+</div>
+
+
+<br>
+<div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        Asignatura
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <%= f.select(:asignatur_id, ["Seleccionar"],{},{ id: :asignatura,class:"form-control"})  %>
+  </div>
+</div>
+<br>
+
+<div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        Contenido
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <%= f.select(:content_id, ["Seleccionar"],{},{ id: :contenido,class:"form-control"})  %>
+  </div>
+</div>
+<br>
+<div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        Pruebas <i class="fas fa-search"></i>
+      </span>
+    </div>
+      <%= f.select(:id, ["Seleccionar"],{},{ id: :listest,class:"form-control"})  %>
+  </div>
+</div>

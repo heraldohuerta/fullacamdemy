@@ -1,0 +1,8 @@
+<% 5.times do |ind| %>
+    <% id_opcion = "opcion#{ind}" %>
+    <% id_respuesta = "respuesta#{ind}"  %>
+      $('#<%= id_opcion  %>').val('')
+      $('#<%= id_respuesta  %>').prop("checked", false);
+<% end %>
+$('#notice').text('Ingreso Exitoso')
+$('#pregunta').val('')

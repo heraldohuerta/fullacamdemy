@@ -1,0 +1,17 @@
+
+<div class='row'>
+  <div class="col-sm-10">
+    <%= form_with(scope: :test, url:'#') do |f| %>
+
+      <div class="mt-3">
+        <%=  render './shared/listas', f: f %>
+      </div>
+   <% end %>
+
+    <br>
+    <div id='test_id2'></div>
+
+
+    <div id='test_id3'></div>
+      </div>
+  </div>
