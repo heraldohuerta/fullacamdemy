@@ -20,9 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-   def update
-  
-   end
+   # def update
+   #
+   # end
 
   # DELETE /resource
   # def destroy
@@ -55,7 +55,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :fonocontacto1,
       :nombrecontacto2 ,
       :fonocontacto2 ,
-      :admin])
+      :admin,
+      :avatar])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -77,7 +78,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :fonocontacto1,
       :nombrecontacto2 ,
       :fonocontacto2 ,
-      :admin])
+      :admin,
+      :avatar])
   end
 
   # The path used after sign up.

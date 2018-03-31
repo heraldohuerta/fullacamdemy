@@ -3,121 +3,131 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class = 'rows'>
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-sm-3">
+              <span class="input-group-text" id="basic-addon1">
+                 <%= f.label :email %>
+              </span>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+          </div>
+        </div>
+
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Esperando confirmación para: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-sm-3">
+              <span class="input-group-text" id="basic-addon1">
+                  <%= f.label :password, "Password,  (Mantener en blanco si no deseas cambiar password)" %>
+              </span>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.password_field :password, autocomplete: "off" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> Caracteres Minimos</em>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-sm-3">
+              <span class="input-group-text" id="basic-addon1">
+                    <%= f.label :password_confirmation %><br />
+              </span>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-sm-3">
+              <span class="input-group-text" id="basic-addon1">
+                    <%= f.label :current_password, "Password Actual (Necesita ingresar tu password para aplicar cualquier cambio)"  %>
+              </span>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.password_field :current_password, autocomplete: "off" %>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+  <div class = 'rows'>
+
+   <%
+   campos = [:rut, :nombres, :apellidos, :edad,:bio , :avatar ,:correo,:telefoniafija ,:telefoniamovil ,:ultimocurso ,:colegio ,:nombrecontacto1, :fonocontacto1, :nombrecontacto2 , :fonocontacto2 ]
+   textos = ['Rut', 'Nombres', 'Apellidos', 'Edad', 'Información Personal','Imagen' ,  'Correo Respaldo', 'Telefono Fijo','Telefono Movil', 'Ultimo Año Cursado', 'Colegio Ultimo año Cursado', 'Nombre Contacto', 'Fono Contacto', 'Segundo Contacto', 'Segundo Fono Contacto']
+   %>
+
+
+
+        <% campos.each_with_index do |campos,ind| %>
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend col-sm-3">
+              <span class="input-group-text" id="basic-addon1">
+                  <%= textos[ind] %>
+              </span>
+            </div>
+            <div class='col-sm-12'>
+
+            <% if campos == :bio  %>
+              <%= f.text_area :bio, id: :bio_id_new,  size:'12x12'%>
+            <% elsif campos == :avatar %>
+              <%= f.file_field :avatar, as: :file %>
+              <%= image_tag(f.object.avatar.url(:medium)) %>
+            <% else %>
+              <%= f.text_field campos, id: campos,class:"form-control" %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :rut %><br />
-    <%= f.text_field :rut, autocomplete: "rut" %>
-  </div>
-
-
-
-    <div class="field">
-      <%= f.label :nombres %><br />
-      <%= f.text_field :nombres, autocomplete: "nombres" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :apellidos %><br />
-      <%= f.text_field :apellidos, autocomplete: "apellidos" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :edad %><br />
-      <%= f.text_field :edad, autocomplete: "edad" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :bio %><br />
-      <%= f.text_field :bio, autocomplete: "bio" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :foto %><br />
-      <%= f.text_field :foto, autocomplete: "foto" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :correo %><br />
-      <%= f.text_field :correo, autocomplete: "correo" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :telefoniafija %><br />
-      <%= f.text_field :telefoniafija, autocomplete: "telefoniafija" %>
-    </div>
-
-
-        <div class="field">
-          <%= f.label :telefoniamovil %><br />
-          <%= f.text_field :telefoniamovil, autocomplete: "telefoniamovil" %>
-        </div>
-        <div class="field">
-          <%= f.label :ultimocurso %><br />
-          <%= f.text_field :ultimocurso, autocomplete: "ultimocurso" %>
-        </div>
-
-
-        <div class="field">
-          <%= f.label :colegio %><br />
-          <%= f.text_field :colegio, autocomplete: "colegio" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :nombrecontacto1 %><br />
-          <%= f.text_field :nombrecontacto1, autocomplete: "nombrecontacto1" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :fonocontacto1 %><br />
-          <%= f.text_field :fonocontacto1, autocomplete: "fonocontacto1" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :nombrecontacto2 %><br />
-          <%= f.text_field :nombrecontacto2, autocomplete: "nombrecontacto2" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :fonocontacto2 %><br />
-          <%= f.text_field :fonocontacto2, autocomplete: "fonocontacto2" %>
-        </div>
 
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Actualizar",class:'btn btn-primary' %>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<br><br>
+<div class='rows'>
+<%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-primary text-white' %>
+<%= link_to "Back", :back, class:"btn btn-primary text-white"  %>
+</div>

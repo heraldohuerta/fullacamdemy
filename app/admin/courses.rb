@@ -23,6 +23,9 @@ index do
       column :nombre
       column 'Detalle', :detealle
       column 'Tiempo', :tiempo
+      column 'Avatar' do |a|
+       image_tag(a.firmware_image.url(:medium),size: '100x150')
+      end
       column 'Foto', :firmware_image do |asi|
        asi.firmware_image.original_filename
       end
