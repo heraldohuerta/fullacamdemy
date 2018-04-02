@@ -3,13 +3,18 @@
   <div  id="list-example" class="list-group ml-2">
     <a class="list-group-item list-group-item-action" href="<%= root_path %>">Incio</a>
     <a class="list-group-item list-group-item-action" href="<%= edit_user_registration_path %>">Editar mi Usuario</a>
-    <a class="list-group-item list-group-item-action" href="<%= questiontypes_path %>">Tipo de Preguntas</a>
     <a class="list-group-item list-group-item-action" href="<%=  tests_path %>">Crear Pruebas</a>
     <a class="list-group-item list-group-item-action" href="<%= questiontests_path %>">Crear Preguntas</a>
     <a class="list-group-item list-group-item-action" href="<%= vertest_path %>">Visualizar Pruebas</a>
 
     <% if isadmin? %>
       <a class="list-group-item list-group-item-action" href="<%= new_admin_user_session_path %>">Administración Usuario</a>
+      <a class="list-group-item list-group-item-action" href="<%= plans_path %>">Ingreso de Planes</a>
+      <a class="list-group-item list-group-item-action" href="<%= questiontypes_path %>">Tipo de Preguntas</a>
+      <a class="list-group-item list-group-item-action" href="<%= options_path %>">Opciones Adicionales</a>
+      <a class="list-group-item list-group-item-action" href="<%= units_path %>">Unidades de Medida</a>
+
+
     <% end %>
     <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete,class:"list-group-item list-group-item-action" %>
   </div>

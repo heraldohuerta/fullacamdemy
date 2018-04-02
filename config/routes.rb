@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
 
+  resources :units
+  resources :options
+  resources :plans
   resources :questiontypes
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
@@ -28,7 +33,7 @@ resources :tests, only: [:index,:create,:update] do
     end
     # resources:questiontests
   end
-  
+
   get 'vertest',   to: 'tests#vertest',  as: 'vertest'
   post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
   get 'inicios/Index'

@@ -1,0 +1,78 @@
+<%= form_with(model: plan, local: true) do |form| %>
+  <% if plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :precio %>
+    <%= form.text_field :precio, id: :plan_precio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :moneda %>
+    <%= form.text_field :moneda, id: :plan_moneda %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_field :descripcion, id: :plan_descripcion %>
+  </div>
+
+
+  <div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+           Seleccione Opciones Adicionales
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <%= form.select(:options, Option.pluck(:descripción,:id),{},{ :id   => "adicional", :multiple => "multiple"})  %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<!-- 
+<h1>Opciones del plan</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Moneda</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @options.each do |option| %>
+      <tr>
+        <td><%= option.codigo %></td>
+        <td><%= option.descripción %></td>
+        <td><%= option.precio %></td>
+        <td><%= option.moneda %></td>
+        <td><%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> -->
+
+<script>
+  $(function () {
+    $('select#adicional').listbox();
+  });
+</script>

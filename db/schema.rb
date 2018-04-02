@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331144602) do
+ActiveRecord::Schema.define(version: 20180402222743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,37 @@ ActiveRecord::Schema.define(version: 20180331144602) do
     t.datetime "firmware_image_updated_at"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "codigo"
+    t.string "descripción"
+    t.float "precio"
+    t.string "moneda"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options_plans", id: false, force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "option_id", null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.float "precio"
+    t.string "moneda"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plans_options", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_plans_options_on_option_id"
+    t.index ["plan_id"], name: "index_plans_options_on_plan_id"
+  end
+
   create_table "questiontests", force: :cascade do |t|
     t.string "encunciado1"
     t.string "enunciado2"
@@ -125,6 +156,13 @@ ActiveRecord::Schema.define(version: 20180331144602) do
     t.index ["asignatur_id"], name: "index_tests_on_asignatur_id"
     t.index ["content_id"], name: "index_tests_on_content_id"
     t.index ["course_id"], name: "index_tests_on_course_id"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "codigo"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -168,6 +206,8 @@ ActiveRecord::Schema.define(version: 20180331144602) do
   add_foreign_key "asignaturs", "courses"
   add_foreign_key "contents", "asignaturs"
   add_foreign_key "contents", "courses"
+  add_foreign_key "plans_options", "options"
+  add_foreign_key "plans_options", "plans"
   add_foreign_key "questiontests", "questiontypes"
   add_foreign_key "questiontests", "tests"
   add_foreign_key "tests", "asignaturs"
