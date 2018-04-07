@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   resources :units
   resources :options
   resources :questiontypes
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
 
