@@ -9,6 +9,8 @@
       <th>Descripción</th>
       <th>Precio</th>
       <th>Moneda</th>
+      <th>Cantidad</th>
+      <th>Unidad</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +22,8 @@
         <td><%= option.descripción %></td>
         <td><%= option.precio %></td>
         <td><%= option.moneda %></td>
+        <td><%= option.cantidad %></td>
+        <td><%= option.unit.codigo if  !option.unit_id.nil? %></td>
         <td><%= link_to 'Show', option %></td>
         <td><%= link_to 'Edit', edit_option_path(option) %></td>
         <td><%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Are you sure?' } %></td>

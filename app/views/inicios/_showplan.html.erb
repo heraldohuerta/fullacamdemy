@@ -1,0 +1,19 @@
+<div class="container">
+<div class="col-sm-3">
+ <div class="card" style="width: 18rem;">
+   <div class="card-body text-center">
+     <h1 class="card-title"><%= plan.descripcion %></h1>
+     <h2 class="card-text text-danger">Precio del Plan:$<%= plan.precio %></h2>
+     <hr>
+     <h2>Cursos del Plan</h2>
+     <div class="row">
+
+    <% plan.course_plans.each do |cp| %>
+        <h3 class="card-text text-danger">$<%= cp.course.nombre %></h3>
+        <img class="card-img-top" src="<%= cp.course.firmware_image %>" alt="Card image cap">
+    <% end %>
+    </div>
+   </div>
+ </div>
+</div>
+</div>

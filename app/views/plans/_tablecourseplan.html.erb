@@ -1,0 +1,26 @@
+
+<h1>Cursos del Plan</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Detalle</th>
+      <th>Tiempo</th>
+      <th>Costo</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% course.each do |opt| %>
+    <% lv_var = "course#{opt.plan_id.to_s + opt.course_id.to_s}" %>
+      <tr id='<%=  lv_var %>'>
+        <td><%= opt.course.nombre%></td>
+        <td><%= opt.course.detealle %></td>
+        <td><%= opt.course.tiempo%></td>
+        <td><%= opt.course.costo %></td>
+        <td><%= link_to 'Destroy', destroycourseplan_plan_path(opt.plan_id,opt.course_id), method: :delete, data: { confirm: 'Are you sure?',remote: true } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

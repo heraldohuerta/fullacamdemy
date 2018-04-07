@@ -41,7 +41,11 @@ form do |f|
       f.input :asignatur_id,label: 'Asignatura',as: :select,collection: Asignatur.pluck(:nombre, :id)
       input :nombre
       input :detalle
-      input :url_file
+
+      input :url_file do |f|
+         link_to(f.url_file,f.url_file) if !f.url_file.nil?
+      end
+
 
     end
 actions

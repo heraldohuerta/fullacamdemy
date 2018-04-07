@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Codigo:</strong>
   <%= @option.codigo %>
@@ -19,6 +20,21 @@
   <strong>Moneda:</strong>
   <%= @option.moneda %>
 </p>
+
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @option.cantidad  %>
+</p>
+
+
+<p>
+  <strong>Unidad de Medida:</strong>
+  <%= @option.unit.codigo if  !@option.unit_id.nil? %>
+</p>
+
+
+
 
 <%= link_to 'Edit', edit_option_path(@option) %> |
 <%= link_to 'Back', options_path %>

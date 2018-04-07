@@ -47,6 +47,7 @@ class TestsController < ApplicationController
   end
 
   def  completarasignatura
+
     @asignatura =   Asignatur.where(course_id: params[:course_id])
   end
 

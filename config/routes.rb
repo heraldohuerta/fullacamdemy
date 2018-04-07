@@ -3,8 +3,15 @@ Rails.application.routes.draw do
 
   resources :units
   resources :options
-  resources :plans
   resources :questiontypes
+   # resources :plans
+
+  resources :plans do
+    member do
+      delete 'destroyplansoption/:option_id', to: 'plans#destroyplansoption', as: 'destroyplansoption'
+      delete 'destroycourseplan/:course_id', to: 'plans#destroycourseplan', as: 'destroycourseplan'
+    end
+  end
 
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -17,6 +24,7 @@ Rails.application.routes.draw do
 
 
 resources :questiontests , only: [:index,:create,:destroy]
+
 post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
 
 
@@ -36,7 +44,15 @@ resources :tests, only: [:index,:create,:update] do
 
   get 'vertest',   to: 'tests#vertest',  as: 'vertest'
   post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
-  get 'inicios/Index'
+
+
+  resources :inicios, only: [:index,:show]
+  #  do
+  #   delete 'orders/:order_id', to: 'products#destroy',  as: 'destroy'
+  #   resource  :orders, only: [:create]
+  # end
+
+  # get 'inicios/Index'
   root to: "inicios#Index"
 
 end

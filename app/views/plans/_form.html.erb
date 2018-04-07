@@ -1,4 +1,5 @@
-<%= form_with(model: plan, local: true) do |form| %>
+<div class="container">
+<%= form_with(model:plan) do |form| %>
   <% if plan.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
@@ -27,7 +28,8 @@
   </div>
 
 
-  <div>
+<div class="row">
+  <div class='col-sm-5  m-0'>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">
@@ -39,12 +41,28 @@
     </div>
   </div>
 
+  <div class='col-sm-5 m-0'>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+           Seleccione Los Cursos del Plan
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+
+      <%= form.select(:object_id, Course.pluck(:nombre,:id),{},{ :id   => "course", :multiple => "multiple"})  %>
+    </div>
+  </div>
+
+</div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-
-<!-- 
+</div>
+<!--
 <h1>Opciones del plan</h1>
 
 <table>
@@ -74,5 +92,6 @@
 <script>
   $(function () {
     $('select#adicional').listbox();
+    $('select#course').listbox();
   });
 </script>

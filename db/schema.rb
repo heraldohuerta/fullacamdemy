@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402222743) do
+ActiveRecord::Schema.define(version: 20180403024952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 20180402222743) do
     t.index ["course_id"], name: "index_contents_on_course_id"
   end
 
+  create_table "course_plans", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_plans_on_course_id"
+    t.index ["plan_id"], name: "index_course_plans_on_plan_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "nombre"
     t.string "detealle"
@@ -99,6 +108,9 @@ ActiveRecord::Schema.define(version: 20180402222743) do
     t.string "moneda"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "unit_id"
+    t.integer "cantidad", default: 0
+    t.index ["unit_id"], name: "index_options_on_unit_id"
   end
 
   create_table "options_plans", id: false, force: :cascade do |t|
@@ -206,6 +218,9 @@ ActiveRecord::Schema.define(version: 20180402222743) do
   add_foreign_key "asignaturs", "courses"
   add_foreign_key "contents", "asignaturs"
   add_foreign_key "contents", "courses"
+  add_foreign_key "course_plans", "courses"
+  add_foreign_key "course_plans", "plans"
+  add_foreign_key "options", "units"
   add_foreign_key "plans_options", "options"
   add_foreign_key "plans_options", "plans"
   add_foreign_key "questiontests", "questiontypes"

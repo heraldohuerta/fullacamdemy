@@ -25,7 +25,6 @@ class OptionsController < ApplicationController
   # POST /options.json
   def create
     @option = Option.new(option_params)
-
     respond_to do |format|
       if @option.save
         format.html { redirect_to @option, notice: 'Option was successfully created.' }
@@ -69,6 +68,6 @@ class OptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def option_params
-      params.require(:option).permit(:codigo, :descripción, :precio, :moneda)
+      params.require(:option).permit(:codigo, :descripción, :precio, :moneda, :unit_id, :cantidad)
     end
 end

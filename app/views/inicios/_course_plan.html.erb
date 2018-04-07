@@ -1,0 +1,37 @@
+
+<% plans.each do |c| %>
+<div class="col-sm-3">
+ <div class="card" style="width: 18rem;">
+   <div class="card-body text-center">
+     <h1 class="card-title"><%= c.descripcion %></h1>
+     <h2 class="card-text text-danger">$<%= c.precio %></h2>
+    <% c.course_plans.each do |cp| %>
+        <h3 class="card-text text-danger">$<%= cp.course.nombre %></h3>
+    <% end %>
+     <%= link_to 'Detalle', inicio_path(c.id),  data: {remote: true },class: 'btn btn-xs btn-primary text-white' %>
+   </div>
+ </div>
+</div>
+<% end %>
+
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLongTitle">Detalle del Plan</h1>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="form_edit">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<h1>Opciones Adicionales del Plan</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Moneda</th>
+      <th>Unidad</th>
+      <th>Cantidad</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% plansoption.each do |opt| %>
+    <% lv_var = "adicional#{opt.plan_id.to_s + opt.option_id.to_s}" %>
+      <tr id='<%=  lv_var %>'>
+        <td><%= opt.option.codigo%></td>
+        <td><%= opt.option.descripción %></td>
+        <td><%= opt.option.precio %></td>
+        <td><%= opt.option.moneda %></td>
+        <td><%= opt.option.unit.codigo %></td>
+        <td><%= opt.option.cantidad %></td>
+        <td><%= link_to 'Destroy', destroyplansoption_plan_path(opt.plan_id,opt.option_id), method: :delete, data: { confirm: 'Are you sure?',remote: true } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

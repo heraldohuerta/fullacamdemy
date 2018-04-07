@@ -31,6 +31,17 @@
     <%= form.text_field :moneda, id: :option_moneda %>
   </div>
 
+  <div class="field">
+    <%= form.label :cantidad %>
+    <%= form.text_field :cantidad, id: :option_cantidad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unidad %>
+    <%= form.select(:unit_id, Unit.pluck(:codigo,:id),{},{ id: :option_unit_ida,class:"form-control"})  %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

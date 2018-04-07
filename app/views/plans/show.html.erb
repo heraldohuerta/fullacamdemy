@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Precio:</strong>
-  <%= @plan.precio %>
-</p>
 
-<p>
-  <strong>Moneda:</strong>
-  <%= @plan.moneda %>
-</p>
+<div class="container">
+  <div class="jumbotron">
+  <div class="text-center ">
+    <h1> <<<<< PLAN >>>>> </h1>
+    <h2> <%= @plan.descripcion %> </h2>
+    <h3><strong>Precio:</strong> <%= @plan.precio %> </<h3>
+    <h3><strong>Moneda:</strong> <%= @plan.moneda %> </h3>>
+  </div>
+</div>
+</div>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @plan.descripcion %>
-</p>
+
+
+
+<%= render 'tableplanoption', plansoption: @plansoption %>
+<%= render 'tablecourseplan', course: @courseplan %>
+
 
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
