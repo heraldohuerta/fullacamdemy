@@ -55,6 +55,6 @@ resources :tests, only: [:index,:create,:update] do
   # end
 
   # get 'inicios/Index'
-  root to: "inicios#Index"
+  root to: "inicios#index"
 
 end

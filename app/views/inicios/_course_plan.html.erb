@@ -1,7 +1,7 @@
 
 <% plans.each do |c| %>
-<div class="col-sm-3">
- <div class="card" style="width: 18rem;">
+<div class="col-sm-3 m-2">
+ <div class="card m-2" style="width: 18rem;">
    <div class="card-body text-center">
      <h1 class="card-title"><%= c.descripcion %></h1>
      <h2 class="card-text text-danger">$<%= c.precio.to_i %> - <%= c.moneda %></h2>
