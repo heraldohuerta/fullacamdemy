@@ -32,12 +32,7 @@ Rails.application.routes.draw do
   }
 
 
-
-
 post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
-
-
-
 
 
 resources :tests, only: [:index,:create,:update] do

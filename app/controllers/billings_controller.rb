@@ -6,29 +6,23 @@ class BillingsController < ApplicationController
   end
 
   def execute
-    byebug
     master_order = @master_order.take
-
     paypal_payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
     if paypal_payment.execute(payer_id: params[:PayerID])
         amount = paypal_payment.transactions.first.amount.total
-        monto = amount.to_i
         moneda = master_order.currency? ? order.currency : 'USD'
         code = paypal_payment.id
-            billing = Billing.create!(code: code ,payment_method: 'paypal',amount: monto ,currency: moneda )
-
+            billing = Billing.create!(code: code ,payment_method: 'paypal',amount: amount ,currency: moneda )
 
              master_order.status = true
-             master_order.user_id = current_user
-             master_order.billing_id =   code
-             master_order.total = monto
+             master_order.user_id = current_user.id
+             master_order.billing_id =   billing.id
+             master_order.total = amount
              if master_order.save
                redirect_to details_path, notice: "La compra se realizó con éxito!"
             else
                 redirect_to details_path, notice:'No se ha generado la compra, volver a intentar'
             end
-
-
     else
             redirect_to details_path, notice:'No se ha generado la compra, volver a intentar'
     end
@@ -38,8 +32,13 @@ class BillingsController < ApplicationController
   def pre_pay
       order =    @master_order.take
       details = order.details
-      @total =  order.details.map {|x| x.quantity.to_i * x.price.to_i }.compact
-      @total = @total[0].to_i
+
+      total  = 0
+      order.details.each do  |x|
+          mul = x.quantity.to_i * x.price.to_i
+          total = total +  mul
+      end
+      @total = total
       @items = details.map  do |items|
             item = {}
             item[:name]     = items.plan.descripcion
@@ -56,8 +55,8 @@ class BillingsController < ApplicationController
             :payer =>  {
               :payment_method =>  "paypal" },
             :redirect_urls => {
-              :return_url => "https://9a68ba45.ngrok.io/billings/execute",
-              :cancel_url => "https://9a68ba45.ngrok.io/" },
+              :return_url => "https://fullacademy.herokuapp.com/billings/execute",
+              :cancel_url => "https://fullacademy.herokuapp.com/" },
             :transactions =>  [{
               :item_list => {
                 :items => @items
@@ -71,8 +70,8 @@ class BillingsController < ApplicationController
 
       if payment.create
          redirect_url = payment.links.find{|v| v.method == "REDIRECT" }.href
-         redirect_to redirect_url
-         # redirect_to products_path, notice:'Se ha generado la compra, se ha enviado un correo con el detalle'
+         # redirect_to redirect_url
+          redirect_to root_path, notice:'Se ha generado la compra, se ha enviado un correo con el detalle'
       else
         # render json: payment.error
         redirect_to details_path, notice:'No se ha generado la compra, volver a intentar'

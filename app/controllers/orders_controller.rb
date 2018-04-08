@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-
+    
   end
 
   def create
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
       @detail.user = current_user
       @detail.moneda = plan.moneda
       if @detail.save
-        redirect_to root_path, notice:'Se ha ingresado al carrito de compra'
+            redirect_to root_path, notice:'Se ha ingresado al carrito de compra'
       else
         redirect_to root_path, alert:'Problema al cargar carrito de compra'
       end
