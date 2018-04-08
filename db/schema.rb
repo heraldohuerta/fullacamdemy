@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407175318) do
+ActiveRecord::Schema.define(version: 20180408152016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 20180407175318) do
     t.index ["course_id"], name: "index_asignaturs_on_course_id"
   end
 
+  create_table "billings", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 5, scale: 2
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string "nombre"
     t.string "detalle"
@@ -101,6 +110,20 @@ ActiveRecord::Schema.define(version: 20180407175318) do
     t.datetime "firmware_image_updated_at"
   end
 
+  create_table "details", force: :cascade do |t|
+    t.string "payed"
+    t.string "price"
+    t.string "quantity"
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_details_on_order_id"
+    t.index ["plan_id"], name: "index_details_on_plan_id"
+    t.index ["user_id"], name: "index_details_on_user_id"
+  end
+
   create_table "options", force: :cascade do |t|
     t.string "codigo"
     t.string "descripción"
@@ -116,6 +139,18 @@ ActiveRecord::Schema.define(version: 20180407175318) do
   create_table "options_plans", id: false, force: :cascade do |t|
     t.bigint "plan_id", null: false
     t.bigint "option_id", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "status"
+    t.bigint "billing_id"
+    t.bigint "user_id"
+    t.decimal "total", precision: 5, scale: 2
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["billing_id"], name: "index_orders_on_billing_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -222,7 +257,12 @@ ActiveRecord::Schema.define(version: 20180407175318) do
   add_foreign_key "contents", "courses"
   add_foreign_key "course_plans", "courses"
   add_foreign_key "course_plans", "plans"
+  add_foreign_key "details", "orders"
+  add_foreign_key "details", "plans"
+  add_foreign_key "details", "users"
   add_foreign_key "options", "units"
+  add_foreign_key "orders", "billings"
+  add_foreign_key "orders", "users"
   add_foreign_key "plans_options", "options"
   add_foreign_key "plans_options", "plans"
   add_foreign_key "questiontests", "questiontypes"

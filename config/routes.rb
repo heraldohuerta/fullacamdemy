@@ -1,19 +1,27 @@
 Rails.application.routes.draw do
 
-
-
+  resources :questiontests , only: [:index,:create,:destroy]
+  resources :inicios, only: [:index,:show]
   resources :units
   resources :options
   resources :questiontypes
-   # resources :plans
+  resources :details, only: [:index,:destroy]
 
   resources :plans do
+    resource  :order, only: [:create]
     member do
       delete 'destroyplansoption/:option_id', to: 'plans#destroyplansoption', as: 'destroyplansoption'
       delete 'destroycourseplan/:course_id', to: 'plans#destroycourseplan', as: 'destroycourseplan'
     end
   end
 
+
+  resources :billings, only: [] do
+      collection do
+          get 'pre_pay'
+          get 'execute'
+        end
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -25,7 +33,6 @@ Rails.application.routes.draw do
 
 
 
-resources :questiontests , only: [:index,:create,:destroy]
 
 post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
 
@@ -48,7 +55,7 @@ resources :tests, only: [:index,:create,:update] do
   post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
 
 
-  resources :inicios, only: [:index,:show]
+
   #  do
   #   delete 'orders/:order_id', to: 'products#destroy',  as: 'destroy'
   #   resource  :orders, only: [:create]

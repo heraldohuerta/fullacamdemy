@@ -1,4 +1,4 @@
-ruby '2.3.4'
+ruby '2.4.1'
 
 source 'https://rubygems.org'
 
@@ -12,7 +12,7 @@ gem 'activeadmin'
 gem "paperclip", "~> 6.0.0"
 gem 'cancancan'
 gem 'omniauth-facebook'
-
+gem 'paypal-sdk-rest'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use postgresql as the database for Active Record

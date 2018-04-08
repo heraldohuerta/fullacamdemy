@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payed: MyString
+  price: MyString
+  quantity: MyString
+  user: one
+  plan: one
+  order: one
+
+two:
+  payed: MyString
+  price: MyString
+  quantity: MyString
+  user: two
+  plan: two
+  order: two

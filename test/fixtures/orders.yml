@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  billing: one
+  user: one
+  total: 9.99
+  currency: MyString
+
+two:
+  status: MyString
+  billing: two
+  user: two
+  total: 9.99
+  currency: MyString

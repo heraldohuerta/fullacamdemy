@@ -1,4 +1,9 @@
-<%= ENV['FACEBOOK_ID'] %>
+<% if @total != 0 &&  user_signed_in? %>
+<ul>
+  <li><%= link_to 'Ver Carro', details_path, method: :get, class:"btn btn-primary  text-white" %></p></li>
+</ul>
+
+<% end %>
 <div id='products' class="row">
   <%= render  'course_plan', plans: @plans %>
 </div>

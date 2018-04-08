@@ -1,6 +1,6 @@
 
 <% plans.each do |c| %>
-<div class="col-sm-3 m-2">
+<div>
  <div class="card m-2" style="width: 18rem;">
    <div class="card-body text-center">
      <h1 class="card-title"><%= c.descripcion %></h1>
@@ -9,6 +9,7 @@
         <h3 class="card-text text-danger">$<%= cp.course.nombre %></h3>
     <% end %>
      <%= link_to 'Detalle', inicio_path(c.id),  data: {remote: true },class: 'btn btn-xs btn-primary text-white' %>
+     <%= link_to 'Enviar al Carro', plan_order_path(c.id), method: :post, class:"btn btn-primary  text-white" %>
    </div>
  </div>
 </div>
