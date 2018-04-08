@@ -6,8 +6,6 @@ class BillingsController < ApplicationController
   end
 
   def execute
-    byebug
-
     master_order = @master_order.take
 
     paypal_payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
@@ -37,7 +35,6 @@ class BillingsController < ApplicationController
   end
 
   def pre_pay
-    byebug
       order =    @master_order.take
       details = order.details
       @total =  order.details.map {|x| x.quantity.to_i * x.price.to_i }.compact
