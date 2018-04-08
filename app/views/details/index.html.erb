@@ -1,11 +1,12 @@
 
+<%= ENV['PAYPAL_CLIENT_ID'] %>
 <% if !@details.empty? %>
 <h1>Su Número de Solicitud de Compra es: <%= @details.take.order_id %> </h1>
 
 <div class="row">
 <% @details.each do |p| %>
  <div class="col-sm-3">
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 20rem;">
     <div class="card-body text-center">
       <h5 class="card-title"><%= p.plan.descripcion %></h5>
       <h1 class="card-text text-danger">Cantidad:1</h1>
