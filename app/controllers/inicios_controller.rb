@@ -21,6 +21,10 @@ class IniciosController < ApplicationController
   end
 
   def show
+     @plan = Plan.find(params[:id])
+  end
+
+  def detallecompra
      @compras = current_user.orders.where(status: true)
   end
 end

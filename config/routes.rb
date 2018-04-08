@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :questiontests , only: [:index,:create,:destroy]
-  resources :inicios, only: [:index,:show]
+
   resources :units
   resources :options
   resources :questiontypes
@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   }
 
 
+resources :inicios, only: [:index,:show] do
+  collection do
+    get  'detallecompra'
+  end
+end
+
 post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
 
 
@@ -48,6 +54,8 @@ resources :tests, only: [:index,:create,:update] do
 
   get 'vertest',   to: 'tests#vertest',  as: 'vertest'
   post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
+
+
 
 
 
