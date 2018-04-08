@@ -19,6 +19,8 @@ filter :nombre
 filter :detealle
 filter :created_at
 filter :course_id
+
+
 filter :user_id,label:'Docente' ,as: :select,collection: proc { User.pluck(:nombres, :id) }
 
 
@@ -27,7 +29,9 @@ index do
       column :nombre
       column 'Detalle', :detealle
       column 'Nombre Docente', :user_id do |f|
-       f.user.nombres
+            if  !f.user.nil?
+             f.user.nombres
+           end
       end
 
       column 'Tiempo', :tiempo
