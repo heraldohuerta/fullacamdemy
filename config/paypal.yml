@@ -26,6 +26,5 @@ development:
 
 production:
   <<: *default
-    client_id: <%= ENV["PAYPAL_CLIENT_ID"] %>
-    client_secret: <%= ENV["PAYPAL_SECRET"] %>  
+  
   mode: sandbox
