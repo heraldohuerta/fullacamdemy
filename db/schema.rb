@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408204153) do
+ActiveRecord::Schema.define(version: 20180408221410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 20180408204153) do
     t.string "firmware_image_content_type"
     t.integer "firmware_image_file_size"
     t.datetime "firmware_image_updated_at"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "details", force: :cascade do |t|
@@ -258,6 +260,7 @@ ActiveRecord::Schema.define(version: 20180408204153) do
   add_foreign_key "contents", "courses"
   add_foreign_key "course_plans", "courses"
   add_foreign_key "course_plans", "plans"
+  add_foreign_key "courses", "users"
   add_foreign_key "details", "orders"
   add_foreign_key "details", "plans"
   add_foreign_key "details", "users"

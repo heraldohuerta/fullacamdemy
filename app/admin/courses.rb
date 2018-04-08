@@ -11,17 +11,25 @@ permit_params :nombre,
 :tiempo,
 :foto,
 :costo,
-:firmware_image
+:firmware_image,
+:user_id
 
 
 filter :nombre
 filter :detealle
 filter :created_at
+filter :course_id
+filter :user_id,label:'Docente' ,as: :select,collection: proc { User.pluck(:nombres, :id) }
+
 
 index do
       column :id
       column :nombre
       column 'Detalle', :detealle
+      column 'Nombre Docente', :user_id do |f|
+       f.user.nombres
+      end
+
       column 'Tiempo', :tiempo
       column 'Avatar' do |a|
        image_tag(a.firmware_image.url(:medium),size: '100x150')
@@ -37,6 +45,7 @@ index do
 #
 form do |f|
     inputs 'Ingresar Curso' do
+      f.input  :user_id,label:'Docente' ,as: :select,collection: User.pluck(:nombres, :id)
       f.input :nombre
       f.input :detealle
       f.input :firmware_image, :as => :file, :hint => f.object.firmware_image.present? \
@@ -54,6 +63,7 @@ show do |f|
     row :firmware_image do
         image_tag(f.firmware_image.url(:thumb))
         end
+        row :user_id
         row :nombre
         row :detealle
         row :tiempo
