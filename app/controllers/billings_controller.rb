@@ -70,8 +70,8 @@ class BillingsController < ApplicationController
 
       if payment.create
          redirect_url = payment.links.find{|v| v.method == "REDIRECT" }.href
-         # redirect_to redirect_url
-          redirect_to root_path, notice:'Se ha generado la compra, se ha enviado un correo con el detalle'
+          redirect_to redirect_url
+          # redirect_to root_path, notice:'Se ha generado la compra, se ha enviado un correo con el detalle'
       else
         # render json: payment.error
         redirect_to details_path, notice:'No se ha generado la compra, volver a intentar'
