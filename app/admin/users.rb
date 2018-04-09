@@ -22,7 +22,7 @@ ActiveAdmin.register User do
   :nombrecontacto2 ,
   :fonocontacto2 ,
   :admin,
-  :avatar
+  :avatar,
   :role
 
   # or
