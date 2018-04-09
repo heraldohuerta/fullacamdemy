@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
 
   def index
-    @panel = Panel.where(user_id: current_user)
+    @panel = Panel.select(:plan_id).where(user_id: current_user).group(:plan_id)
   end
 
   def detallecompra
