@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408221410) do
+ActiveRecord::Schema.define(version: 20180409002316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,21 @@ ActiveRecord::Schema.define(version: 20180408221410) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "panels", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.bigint "option_id"
+    t.integer "cantidad_compra"
+    t.integer "cantidad_consumida"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "unit_id"
+    t.index ["option_id"], name: "index_panels_on_option_id"
+    t.index ["plan_id"], name: "index_panels_on_plan_id"
+    t.index ["unit_id"], name: "index_panels_on_unit_id"
+    t.index ["user_id"], name: "index_panels_on_user_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.float "precio"
     t.string "moneda"
@@ -267,6 +282,10 @@ ActiveRecord::Schema.define(version: 20180408221410) do
   add_foreign_key "options", "units"
   add_foreign_key "orders", "billings"
   add_foreign_key "orders", "users"
+  add_foreign_key "panels", "options"
+  add_foreign_key "panels", "plans"
+  add_foreign_key "panels", "units"
+  add_foreign_key "panels", "users"
   add_foreign_key "plans_options", "options"
   add_foreign_key "plans_options", "plans"
   add_foreign_key "questiontests", "questiontypes"

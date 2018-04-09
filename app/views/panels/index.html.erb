@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Panels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Plan</th>
+      <th>Option</th>
+      <th>Cantidad compra</th>
+      <th>Cantidad consumida</th>
+      <th>Unidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @panels.each do |panel| %>
+      <tr>
+        <td><%= panel.user.nombres %></td>
+        <td><%= panel.plan.descripcion %></td>
+        <td><%= panel.option.descripción %></td>
+        <td><%= panel.cantidad_compra %></td>
+        <td><%= panel.cantidad_consumida %></td>
+        <td><%= panel.unit.codigo %></td>
+        <td><%= link_to 'Show', panel %></td>
+        <td><%= link_to 'Edit', edit_panel_path(panel) %></td>
+        <td><%= link_to 'Destroy', panel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Panel', new_panel_path %>

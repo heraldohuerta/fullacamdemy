@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @panel.user.nombres %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @panel.plan.descripcion %>
+</p>
+
+<p>
+  <strong>Option:</strong>
+  <%= @panel.option.descripción %>
+</p>
+
+<p>
+  <strong>Cantidad compra:</strong>
+  <%= @panel.cantidad_compra %>
+</p>
+
+<p>
+  <strong>Cantidad consumida:</strong>
+  <%= @panel.cantidad_consumida %>
+</p>
+
+<p>
+  <strong>Cantidad consumida:</strong>
+  <%= @panel.unit.codigo %>
+</p>
+
+<%= link_to 'Edit', edit_panel_path(@panel) %> |
+<%= link_to 'Back', panels_path %>

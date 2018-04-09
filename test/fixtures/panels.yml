@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  plan: one
+  option: one
+  cantidad_compra: 1
+  cantidad_consumida: 1
+
+two:
+  user: two
+  plan: two
+  option: two
+  cantidad_compra: 1
+  cantidad_consumida: 1

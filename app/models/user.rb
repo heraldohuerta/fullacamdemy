@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :plans, through: :details
   has_many :orders
   has_many :courses
+  has_many :panels
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]

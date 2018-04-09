@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  resources :panels
   resources :questiontests , only: [:index,:create,:destroy]
 
   resources :units
@@ -32,11 +34,7 @@ Rails.application.routes.draw do
   }
 
 
-resources :inicios, only: [:index,:show] do
-  collection do
-    get  'detallecompra'
-  end
-end
+resources :inicios, only: [:index,:show]
 
 post 'questiontests/update/:id', to: 'questiontests#update', as: 'update'
 
@@ -56,13 +54,14 @@ resources :tests, only: [:index,:create,:update] do
   post 'tests/create_question', to: 'tests#create_question', as: 'create_question'
 
 
+  resources :students, only: [:index] do
+    collection do
+      get  'detallecompra'
+      get  'test/:id', to: 'students#test', as: 'test'
+      post 'finalizar/:id', to: 'students#finalizar', as: 'finalizar'
+    end
+  end
 
-
-
-  #  do
-  #   delete 'orders/:order_id', to: 'products#destroy',  as: 'destroy'
-  #   resource  :orders, only: [:create]
-  # end
 
   # get 'inicios/Index'
   root to: "inicios#index"

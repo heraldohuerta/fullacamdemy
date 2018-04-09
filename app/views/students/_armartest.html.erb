@@ -1,0 +1,35 @@
+<hr>
+<div class="alert alert-success">
+  <strong id='notice'></strong>
+</div>
+
+<h3>Nombre Prueba:<%= @test.nombre %></h3>
+<h3>Puntaje Máximo:<%= @test.puntajemax %></h3>
+<h3>Puntaje Aprobación:<%= @test.puntajeapro %></h3>
+<hr>
+<hr>
+<%= form_with(scope: :question, url:finalizar_students_path(@test.id)  ) do |f| %>
+    <% @questiontest.each do |pregunta| %>
+                      <h3><%= pregunta.questiontype.descripcion %></h3>
+                      <% ind = 0 %>
+                      <p><%= pregunta.encunciado1 %></p>
+                       <% pregunta.alternatives.each do |alternativa| %>
+                              <% id_opcion = "#{pregunta.id}opcion#{ind}" %>
+                              <% id_respuesta = "#{pregunta.id}respuesta#{ind}"  %>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">
+                                    <% if alternativa.respuesta == true %>
+                                        <%= f.check_box  id_respuesta , id: id_respuesta ,checked:true%>
+                                    <% else %>
+                                        <%= f.check_box  id_respuesta , id: id_respuesta %>
+                                    <% end %>
+                                  </div>
+                                </div>
+                                <%= f.text_field id_opcion , id: id_opcion, value: alternativa.detallepregunta %>
+                              </div>
+                              <% ind = ind + 1 %>
+                        <% end %>
+      <% end %>
+<%= f.submit %>
+<% end %>

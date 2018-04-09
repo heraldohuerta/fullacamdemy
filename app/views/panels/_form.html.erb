@@ -1,0 +1,52 @@
+<div class="container">
+<%= form_with(model: panel, local: true) do |form| %>
+  <% if panel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(panel.errors.count, "error") %> prohibited this panel from being saved:</h2>
+
+      <ul>
+      <% panel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select(:user_id, User.pluck(:nombres,:id),{},{ :id   => "user"})  %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :plan_id %>
+    <%= form.select(:plan_id, Plan.pluck(:descripcion,:id),{},{ :id   => "plan"})  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_id %>
+    <%= form.select(:option_id, Option.pluck(:descripción,:id),{},{ :id   => "adicional"})  %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :cantidad_compra %>
+    <%= form.number_field :cantidad_compra, id: :panel_cantidad_compra %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantidad_consumida %>
+    <%= form.number_field :cantidad_consumida, id: :panel_cantidad_consumida %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit_id %>
+    <%= form.select(:unit_id, Unit.pluck(:codigo,:id),{},{ :id   => "Unit"})  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
