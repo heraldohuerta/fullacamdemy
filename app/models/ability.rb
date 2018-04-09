@@ -7,6 +7,7 @@ class Ability
     user ||= User.new(role: 0) # guest user (not logged in)
     if user.admin?
        can :manage, :all
+        can :manage, StudentsController
     elsif user.student?
        can :manage,  [Billing,Detail,Order]
        can :manage, StudentsController
