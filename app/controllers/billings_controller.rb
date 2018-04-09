@@ -64,10 +64,10 @@ class BillingsController < ApplicationController
             :payer =>  {
               :payment_method =>  "paypal" },
             :redirect_urls => {
-              # :return_url => "https://fullacademy.herokuapp.com/billings/execute",
-              # :cancel_url => "https://fullacademy.herokuapp.com/" },
-              :return_url => "https://6caa4821.ngrok.io/billings/execute",
-              :cancel_url => "https://6caa4821.ngrok.io" },
+              :return_url => "https://fullacademy.herokuapp.com/billings/execute",
+              :cancel_url => "https://fullacademy.herokuapp.com/" },
+              # :return_url => "https://6caa4821.ngrok.io/billings/execute",
+              # :cancel_url => "https://6caa4821.ngrok.io" },
             :transactions =>  [{
               :item_list => {
                 :items => @items
