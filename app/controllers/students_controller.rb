@@ -19,4 +19,13 @@ load_and_authorize_resource :class => StudentsController
   def finalizar
       redirect_to students_path, notice: 'Se revisaran los resultados.'
   end
+
+
+  def get_location
+  end
+
+  def find_address
+    @response = { address: Geocoder.address([params[:latitude], params[:longitude]]) }
+    @address = 'NADA'
+  end
 end

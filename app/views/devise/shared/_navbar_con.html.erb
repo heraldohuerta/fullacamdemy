@@ -20,6 +20,8 @@
         <% if current_user.student? ||  current_user.admin?%>
             <li><a class="list-group-item list-group-item-action" href="<%= detallecompra_students_path %>">Detalle de Compras</a></li>
             <li><a class="list-group-item list-group-item-action" href="<%= students_path %>">Panel Estudiante</a></li>
+            <li><a class="list-group-item list-group-item-action" href="<%= get_location_students_path %>">Donde Me Encuentro</a></li>
+
         <% end %>
         <li><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete,class:"list-group-item list-group-item-action" %></li>
     </ul>

@@ -56,7 +56,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :nombrecontacto2 ,
       :fonocontacto2 ,
       :admin,
-      :avatar])
+      :avatar,
+      :address,
+      :latitude,
+      :longitude])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -79,7 +82,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :nombrecontacto2 ,
       :fonocontacto2 ,
       :admin,
-      :avatar])
+      :avatar,
+      :address,
+      :latitude,
+      :longitude])
   end
 
   # The path used after sign up.

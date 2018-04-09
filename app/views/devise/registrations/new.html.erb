@@ -52,7 +52,21 @@
         </div>
   </div>
 
-
+  <div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend col-sm-3">
+          <span class="input-group-text" id="basic-addon1">
+                <%= f.label :address %>
+          </span>
+          <%= link_to "#", class:"btn btn-primary text-white", data: { remote: true },id: "get_location" do %>
+          <i class="fa fa-map-marker"> </i>
+          <% end %>
+        </div>
+        <div class='col-sm-10'>
+          <%= f.text_field :address, class: 'form-control'%>
+        </div>
+    </div>
+  </div>
 
  <%
  campos = [:rut, :nombres, :apellidos, :edad,:bio , :avatar ,:correo,:telefoniafija ,:telefoniamovil ,:ultimocurso ,:colegio ,:nombrecontacto1, :fonocontacto1, :nombrecontacto2 , :fonocontacto2 ]
@@ -89,3 +103,33 @@
 
   <!-- <%= render "devise/shared/links" %> -->
 </div>
+
+
+<script type="text/javascript">
+$("#get_location").on('click', function(event){
+  event.preventDefault();
+  $(this).html('<i class="fa fa-spinner fa-spin"> </i>')
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getAddress);
+  } else {
+    $('body').append("Geolocation is not supported by this browser.");
+  }
+
+
+  function getAddress(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  $.ajax({
+  url: '/students/find_address/',
+  type: 'GET',
+  dataType: 'json',
+  data: {latitude: latitude, longitude: longitude}
+  })
+  .done(function(data){
+  })
+  .always(function(data){
+  $("#get_location").html("<i class='fa fa-map-marker'> <%= @response %></i>");
+  })
+  };
+}
+</script>

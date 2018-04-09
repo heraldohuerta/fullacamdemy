@@ -57,6 +57,8 @@ resources :tests, only: [:index,:create,:update] do
   resources :students, only: [:index] do
     collection do
       get  'detallecompra'
+      get  'get_location'
+      post  'find_address'
       get  'test/:id', to: 'students#test', as: 'test'
       post 'finalizar/:id', to: 'students#finalizar', as: 'finalizar'
     end

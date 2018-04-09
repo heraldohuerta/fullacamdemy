@@ -1,0 +1,34 @@
+
+<div id='address'></div>
+<button id="get_location" type="button", class:"btn btn-primary">
+    direccion
+</button>
+
+<script type="text/javascript">
+
+
+
+  $('#get_location').on('click', function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getAddress);
+    } else {
+      $('body').append("Geolocation is not supported by this browser.");
+    }
+
+  });
+
+function getAddress(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  $.ajax({
+    url: '<%= find_address_students_path %>',
+    type: 'post',
+    data: {student: {latitude: latitude, longitude: longitude}}
+  })
+  .done(function(data){
+  })
+  .always(function(data){
+
+  })
+};
+</script>

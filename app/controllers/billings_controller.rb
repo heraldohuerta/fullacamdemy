@@ -11,13 +11,16 @@ class BillingsController < ApplicationController
     paypal_payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
     if paypal_payment.execute(payer_id: params[:PayerID])
         amount = paypal_payment.transactions.first.amount.total
+        address = paypal_payment.transactions.first.item_list.shipping_address.line1 + ' ' + paypal_payment.transactions.first.item_list.shipping_address.line2
         moneda = master_order.currency? ? master_order.currency : 'USD'
         code = paypal_payment.id
-            billing = Billing.create!(code: code ,payment_method: 'paypal',amount: amount ,currency: moneda )
+        billing = Billing.create!(code: code ,payment_method: 'paypal',amount: amount ,currency: moneda, address: address )
 
              master_order.status = true
              master_order.user_id = current_user.id
              master_order.billing_id =   billing.id
+
+
              master_order.total = amount
              if master_order.save
                redirect_to details_path, notice: "La compra se realizó con éxito!"
@@ -64,10 +67,13 @@ class BillingsController < ApplicationController
             :payer =>  {
               :payment_method =>  "paypal" },
             :redirect_urls => {
-              :return_url => "https://fullacademy.herokuapp.com/billings/execute",
-              :cancel_url => "https://fullacademy.herokuapp.com/" },
-              # :return_url => "https://6caa4821.ngrok.io/billings/execute",
-              # :cancel_url => "https://6caa4821.ngrok.io" },
+              # :return_url => "https://fullacademy.herokuapp.com/billings/execute",
+              # :cancel_url => "https://fullacademy.herokuapp.com/" },
+              :return_url => "https://f3bd9c1f.ngrok.io/billings/execute",
+              :cancel_url => "https://f3bd9c1f.ngrok.io" },
+
+
+
             :transactions =>  [{
               :item_list => {
                 :items => @items
