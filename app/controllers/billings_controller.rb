@@ -1,4 +1,5 @@
 class BillingsController < ApplicationController
+  load_and_authorize_resource
   before_action :find_master_order, only: [:execute,:pre_pay]
 
   def find_master_order
@@ -63,10 +64,10 @@ class BillingsController < ApplicationController
             :payer =>  {
               :payment_method =>  "paypal" },
             :redirect_urls => {
-              :return_url => "https://fullacademy.herokuapp.com/billings/execute",
-              :cancel_url => "https://fullacademy.herokuapp.com/" },
-              # :return_url => "https://9a68ba45.ngrok.io/billings/execute",
-              # :cancel_url => "https://9a68ba45.ngrok.io/" },
+              # :return_url => "https://fullacademy.herokuapp.com/billings/execute",
+              # :cancel_url => "https://fullacademy.herokuapp.com/" },
+              :return_url => "https://6caa4821.ngrok.io/billings/execute",
+              :cancel_url => "https://6caa4821.ngrok.io" },
             :transactions =>  [{
               :item_list => {
                 :items => @items

@@ -23,6 +23,7 @@ ActiveAdmin.register User do
   :fonocontacto2 ,
   :admin,
   :avatar
+  :role
 
   # or
   #
@@ -50,12 +51,14 @@ ActiveAdmin.register User do
   filter  :fonocontacto1
   filter  :nombrecontacto2
   filter  :fonocontacto2
+  filter  :role
 
   index do |f|
 
     column 'Avatar' do |a|
      image_tag(a.avatar.url(:medium),size: '100x150')
     end
+    column  :role
     column  :email
     column  :password
     column  :rut
@@ -84,6 +87,7 @@ ActiveAdmin.register User do
 
   form do |f|
       inputs 'Ingresar Usuario' do
+        f.input :role
         f.input :email
         f.input :password
         f.input :password_confirmation
@@ -108,10 +112,6 @@ ActiveAdmin.register User do
       end
       actions
   end
-
-
-
-
 
 
   controller do

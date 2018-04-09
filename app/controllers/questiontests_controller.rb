@@ -1,5 +1,5 @@
 class QuestiontestsController < ApplicationController
-
+load_and_authorize_resource
   def index
     @courses      = Course.all
     @questiontype = Questiontype.all
@@ -76,7 +76,7 @@ class QuestiontestsController < ApplicationController
             if sw == 1
               # @questiontype  = Questiontype.find(params[:questiontype])
               # @test         = Test.find(params[test][:id])
-              @questiontest = Questiontest.new(question_param)
+              @questiontest = Questiontest.new(question_params)
               @questiontest.test_id = params[:test][:id]
 
 
@@ -108,7 +108,7 @@ class QuestiontestsController < ApplicationController
 
   private
 
-  def question_param
+  def question_params
     params.require(:test).permit(
       # :course_id,
       # :asignatur_id,

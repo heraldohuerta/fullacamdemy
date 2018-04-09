@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-
+load_and_authorize_resource :class => StudentsController
   def index
     @panel = Panel.select(:plan_id).where(user_id: current_user).group(:plan_id)
   end

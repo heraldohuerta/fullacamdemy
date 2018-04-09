@@ -1,10 +1,11 @@
 class TestsController < ApplicationController
-  attr_accessor :prueba
+    attr_accessor :prueba
   before_action :ini
 
+load_and_authorize_resource
   def updated
     @test = Test.find(params[:test][:id])
-    if @test.update(param_test)
+    if @test.update(test_params)
          redirect_to  tests_path, notice: 'La prueba se ha actualizado!'
      else
          redirect_to  tests_path, alert: 'Problemas al actualizar!'
@@ -29,7 +30,7 @@ class TestsController < ApplicationController
           if  params[:test][:id].present? && params[:test][:id] != "0"
             updated()
           else
-               if Test.create(param_test)
+               if Test.create(test_params)
                  redirect_to  tests_path, notice: 'La prueba se ha creado!'
                else
                  redirect_to  tests_path, alert: 'Problemas crear!'
@@ -96,7 +97,7 @@ class TestsController < ApplicationController
 
   private
 
-  def param_test
+  def test_params
     params.require(:test).permit(
       :nombre,
       :course_id,
@@ -105,7 +106,8 @@ class TestsController < ApplicationController
       :puntajemax,
       :puntajeapro,
       :detalle,
-      :url_file
+      :url_file,
+      :archivo
     )
   end
 end

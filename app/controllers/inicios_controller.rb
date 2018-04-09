@@ -1,4 +1,5 @@
 class IniciosController < ApplicationController
+  skip_authorize_resource :index,:show
   # before_action :authenticate_user!
   # before_action :authenticate_user!, only: [:pag1, :pag2]
    before_action :authenticate_user!, except: [:index,:show]
@@ -6,7 +7,6 @@ class IniciosController < ApplicationController
     @total = 0
     if user_signed_in?
         carro = current_user.orders.where(status: false)
-
         @details = []
         if carro.count > 0
           @details = carro.take.details

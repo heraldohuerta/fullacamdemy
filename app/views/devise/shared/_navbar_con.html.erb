@@ -1,25 +1,28 @@
 <div class="col-sm-3">
   <div  id="list-example" class="list-group">
-    <% if isadmin? %>
-            <ul>
-              <li><a class="list-group-item list-group-item-action" href="<%= new_admin_user_session_path %>">Administración Usuario</a></li>
-              <li><a class="list-group-item list-group-item-action" href="<%= plans_path %>">Ingreso de Planes</a></li>
-              <li><a class="list-group-item list-group-item-action" href="<%= questiontypes_path %>">Ingreso Tipo de Preguntas</a></li>
-              <li><a class="list-group-item list-group-item-action" href="<%= options_path %>">Ingreso de Opciones Adicionales</a></li>
-              <li><a class="list-group-item list-group-item-action" href="<%= units_path %>">Ingreso Unidades de Medida</a></li>
-            </ul>
-    <% end %>
+<!-- # enum role: [:student, :teacher, :admin,:guest] -->
     <ul>
-        <li><a class="list-group-item list-group-item-action" href="<%= root_path %>">Incio</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%= edit_user_registration_path %>">Editar mi Usuario</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%=  tests_path %>">Crear Pruebas</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%= questiontests_path %>">Crear Preguntas</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%= vertest_path %>">Visualizar Pruebas</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%= detallecompra_students_path %>">Detalle de Compras</a></li>
-        <li><a class="list-group-item list-group-item-action" href="<%= students_path %>">Index Estudiante</a></li>
+      <li><a class="list-group-item list-group-item-action" href="<%= root_path %>">Incio</a></li>
+      <li><a class="list-group-item list-group-item-action" href="<%= edit_user_registration_path %>">Editar mi Usuario</a></li>
+        <% if current_user.admin? %>
+                  <li><a class="list-group-item list-group-item-action" href="<%= new_admin_user_session_path %>">Administración Usuario</a></li>
+                  <li><a class="list-group-item list-group-item-action" href="<%= plans_path %>">Ingreso de Planes</a></li>
+                  <li><a class="list-group-item list-group-item-action" href="<%= questiontypes_path %>">Ingreso Tipo de Preguntas</a></li>
+                  <li><a class="list-group-item list-group-item-action" href="<%= options_path %>">Ingreso de Opciones Adicionales</a></li>
+                  <li><a class="list-group-item list-group-item-action" href="<%= units_path %>">Ingreso Unidades de Medida</a></li>
+        <% end %>
+        <% if current_user.teacher? ||  current_user.admin?%>
+            <li><a class="list-group-item list-group-item-action" href="<%=  tests_path %>">Crear Pruebas</a></li>
+            <li><a class="list-group-item list-group-item-action" href="<%= questiontests_path %>">Crear Preguntas</a></li>
+            <li><a class="list-group-item list-group-item-action" href="<%= vertest_path %>">Visualizar Pruebas</a></li>
+        <% end %>
 
-
+        <% if current_user.student? ||  current_user.admin?%>
+            <li><a class="list-group-item list-group-item-action" href="<%= detallecompra_students_path %>">Detalle de Compras</a></li>
+            <li><a class="list-group-item list-group-item-action" href="<%= students_path %>">Panel Estudiante</a></li>
+        <% end %>
         <li><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete,class:"list-group-item list-group-item-action" %></li>
     </ul>
+
   </div>
 </div>
