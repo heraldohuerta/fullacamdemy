@@ -1,5 +1,18 @@
 # README
 
+# Proyecto Final 
+
+## https://fullacademy.herokuapp.com/
+
+Incluye 
+
+* Ruby and Rails
+* Css, Html5, Bootstrap-4
+* JavaScript, Scaffolding, Formulario, Crud, CarrierWave, ActivAdmin, Jquery, Ajax,  CanCanCan, Omiauth,  ActionCable.
+* Heroku, Git, PayPal,
+* Postgresql
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
